@@ -12,6 +12,7 @@ endif
 set exrc
 set secure
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-latex
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 filetype plugin on
@@ -45,6 +46,7 @@ endif
 if has("autocmd")
   filetype plugin indent on
 endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
@@ -69,26 +71,34 @@ set incsearch
 set ignorecase
 set smartcase
 
+set rnu
+
 map <F2> :NERDTreeToggle<CR>
 
 nnoremap k gk
 nnoremap j gj
+vnoremap k gk
+vnoremap j gj
+
+" for vim-ing in russian
 nnoremap о gj
 nnoremap л gk
-
 nnoremap щ o
 nnoremap Ж :w<CR>
-
 nnoremap ш i
 
+" escape is too hard to reach!
 " inoremap jk <esc>
 inoremap <c>с <esc>
+
+
+set pastetoggle=<F12>
 
 " for vim-r-plugin
 "let vimrplugin_screenplugin = 0
 
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 
 " Something to supposedly help with color issues...
 "set t_Co=256
@@ -111,9 +121,60 @@ map <leader>ss :setlocal spell!<cr>
 " map <leader>sa zg
 " map <leader>s? z=
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" C.f. https://github.com/junegunn/vim-plug
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-journal'
+" need to use :set filetype=journal:
+
+" Initialize plugin system
+call plug#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Stuff for Limelight
+"
+" Color name (:help cterm-colors) or ANSI code
+"let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 247
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+" Default: 0.5
+let g:limelight_default_coefficient = 0.2
+
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 1
+
+" Beginning/end of paragraph
+"   When there's no empty line between the paragraphs
+"   and each paragraph starts with indentation
+let g:limelight_bop = '^\s'
+let g:limelight_eop = '\ze\n^\s'
+
+" Highlighting priority (default: 10)
+"   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
-
 
