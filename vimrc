@@ -139,6 +139,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-journal'
 " need to use :set filetype=journal:
+Plug 'Shougo/neosnippet.vim'
 
 " Initialize plugin system
 call plug#end()
